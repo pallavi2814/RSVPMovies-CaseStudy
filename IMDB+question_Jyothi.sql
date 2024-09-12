@@ -147,7 +147,7 @@ So, let’s find out the count of movies that belong to only one genre.*/
 
 WITH movies_distinct_genre AS 
 	(SELECT 
-		movie.id,movie.year
+		movie.id
 	FROM
 		movie
 			INNER JOIN
@@ -155,13 +155,9 @@ WITH movies_distinct_genre AS
 	GROUP BY movie.id
 	HAVING COUNT(genre) = 1) 
 SELECT 
-    genre.genre, COUNT(m.id)
+   count(m.id)
 FROM
     movies_distinct_genre m
-        INNER JOIN
-    genre ON m.id = genre.movie_id
-GROUP BY genre.genre
-ORDER BY 2 DESC;
 
 
 /* There are more than three thousand movies which has only one genre associated with them.
